@@ -1,3 +1,4 @@
+import com.github.jengelman.gradle.plugins.shadow.ShadowPlugin
 import io.freefair.gradle.plugins.lombok.LombokPlugin
 
 plugins {
@@ -17,6 +18,13 @@ repositories {
     gradlePluginPortal()
 }
 
+dependencies {
+    implementation(project(":api"))
+    implementation(project(":common"))
+    implementation(project(":paper-lib"))
+    implementation(project(":velocity-lib"))
+}
+
 tasks {
     build {
         dependsOn(shadowJar)
@@ -28,6 +36,7 @@ subprojects {
         apply<JavaPlugin>()
         apply<JavaLibraryPlugin>()
         apply<LombokPlugin>()
+        apply<ShadowPlugin>()
     }
 
     dependencies {
@@ -66,6 +75,10 @@ subprojects {
             testLogging {
                 events("passed", "skipped", "failed")
             }
+        }
+
+        build {
+            dependsOn(shadowJar)
         }
     }
 }
