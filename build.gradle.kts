@@ -1,4 +1,3 @@
-import com.github.jengelman.gradle.plugins.shadow.ShadowPlugin
 import io.freefair.gradle.plugins.lombok.LombokPlugin
 
 plugins {
@@ -19,34 +18,17 @@ repositories {
 }
 
 dependencies {
-    implementation(project(":api"))
-    implementation(project(":common"))
-    implementation(project(":paper-lib"))
-    implementation(project(":velocity-lib"))
-}
-
-tasks {
-    build {
-        dependsOn(shadowJar)
-    }
+    api(project(":api"))
+    api(project(":common"))
+    api(project(":paper-lib"))
+    api(project(":velocity-lib"))
 }
 
 subprojects {
     apply {
-        apply<JavaPlugin>()
-        apply<JavaLibraryPlugin>()
-        apply<LombokPlugin>()
-        apply<ShadowPlugin>()
-    }
-
-    dependencies {
-        implementation("org.jetbrains:annotations:24.1.0")
-        implementation("org.apache.commons:commons-lang3:3.14.0")
-        implementation("com.google.guava:guava:33.0.0-jre")
-
-        testImplementation(platform("org.junit:junit-bom:5.10.2"))
-        testImplementation("org.junit.jupiter:junit-jupiter")
-        testRuntimeOnly("org.junit.platform:junit-platform-launcher")
+        plugin<JavaPlugin>()
+        plugin<JavaLibraryPlugin>()
+        plugin<LombokPlugin>()
     }
 
     tasks {
@@ -57,19 +39,27 @@ subprojects {
             withSourcesJar()
             withJavadocJar()
         }
+    }
+}
 
-        compileJava {
-            options.encoding = Charsets.UTF_8.name()
-        }
+allprojects {
+    repositories {
+        mavenCentral()
+        gradlePluginPortal()
+    }
 
-        compileTestJava {
-            options.encoding = Charsets.UTF_8.name()
-        }
+    dependencies {
+        implementation("org.jetbrains:annotations:24.1.0")
+        implementation("org.apache.commons:commons-lang3:3.14.0")
+        implementation("com.google.guava:guava:33.0.0-jre")
 
-        javadoc {
-            options.encoding = Charsets.UTF_8.name()
-        }
+        testImplementation("org.mockito:mockito-core:5.11.0")
+        testImplementation(platform("org.junit:junit-bom:5.10.2"))
+        testImplementation("org.junit.jupiter:junit-jupiter")
+        testRuntimeOnly("org.junit.platform:junit-platform-launcher")
+    }
 
+    tasks {
         test {
             useJUnitPlatform()
             testLogging {
@@ -77,8 +67,16 @@ subprojects {
             }
         }
 
-        build {
-            dependsOn(shadowJar)
+        compileJava {
+            options.encoding = "UTF-8"
+        }
+
+        compileTestJava {
+            options.encoding = "UTF-8"
+        }
+
+        javadoc {
+            options.encoding = "UTF-8"
         }
     }
 }
