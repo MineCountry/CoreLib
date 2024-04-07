@@ -1,3 +1,3 @@
 dependencies {
-    project(":common")
+    api(project(":common"))
 }
