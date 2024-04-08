@@ -52,6 +52,9 @@ allprojects {
         implementation("org.jetbrains:annotations:24.1.0")
         implementation("org.apache.commons:commons-lang3:3.14.0")
         implementation("com.google.guava:guava:33.0.0-jre")
+        implementation("de.chojo.sadu:sadu-mariadb:2.1.0")
+        implementation("de.chojo.sadu:sadu-queries:2.1.0")
+        implementation("de.chojo.sadu:sadu-datasource:2.1.0")
 
         testImplementation("org.mockito:mockito-core:5.11.0")
         testImplementation(platform("org.junit:junit-bom:5.10.2"))
