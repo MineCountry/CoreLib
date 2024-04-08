@@ -13,6 +13,7 @@ Da sich Implementierungen plattformabhängig unterscheiden können, ist dieses P
 - `common`: Plattformunabhängige Implementierungen
 - `paper-lib`: Spezifische Implementierung für die Plattform Paper
 - `velocity-lib`: Spezifische Implementierung für die Plattform Velocity
+- `examples`: Codebeispiele
 
 ___ 
 

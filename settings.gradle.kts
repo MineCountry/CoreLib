@@ -1,5 +1,2 @@
 rootProject.name = "core-lib"
-include("api")
-include("common")
-include("paper-lib")
-include("velocity-lib")
+include("api", "common", "paper-lib", "velocity-lib", "examples")
