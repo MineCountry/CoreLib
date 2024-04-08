@@ -9,7 +9,7 @@ import java.util.logging.Level;
  *
  * @since 1.0.0
  */
-public interface ILogger {
+public interface CustomLogger {
 
     /**
      * Logs the given message prefixed with the level. Supports formatted messages.

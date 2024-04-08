@@ -6,7 +6,7 @@ package eu.minecountry.core.common;
  * @param <T> The type that will be created with this builder
  * @since 1.0.0
  */
-public interface IBuilder<T> {
+public interface Builder<T> {
 
     /**
      * Constructs the object with the given modifications though this builder.

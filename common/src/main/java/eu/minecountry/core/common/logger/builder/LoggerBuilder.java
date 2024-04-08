@@ -1,6 +1,6 @@
 package eu.minecountry.core.common.logger.builder;
 
-import eu.minecountry.core.common.IBuilder;
+import eu.minecountry.core.common.Builder;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 import org.jetbrains.annotations.Contract;
@@ -26,7 +26,7 @@ import java.util.function.Supplier;
  * @implNote Theoretically can be used to construct any concrete implementation of a type. Nor recommend nor supported.
  */
 @RequiredArgsConstructor(access = AccessLevel.PRIVATE)
-public class LoggerBuilder<T> implements IBuilder<T> {
+public class LoggerBuilder<T> implements Builder<T> {
 
     private final Supplier<T> typeSupplier;
     private final List<Consumer<T>> modifiers = new ArrayList<>();

@@ -1,6 +1,6 @@
 package eu.minecountry.core.common.logger;
 
-import eu.minecountry.core.common.ILogger;
+import eu.minecountry.core.common.CustomLogger;
 import eu.minecountry.core.common.logger.settings.DefaultLogFilter;
 import eu.minecountry.core.common.logger.settings.DefaultLogFormatter;
 import lombok.Setter;
@@ -18,7 +18,7 @@ import java.util.logging.Logger;
 /**
  * Represents an adjustable logger that contains the most common used logging methods.
  */
-public class DefaultLogger implements ILogger {
+public class DefaultLogger implements CustomLogger {
 
     private final Logger logger = Logger.getLogger(this.getClass().getName());
 
