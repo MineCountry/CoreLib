@@ -35,39 +35,41 @@ public interface UserRepository extends Repository<User> {
      */
     Optional<User> findByUsername(@NotNull String username);
 
-
     /**
      * Saves an entity into the data-model.
      *
-     * @param entity The entity
+     * @param user The entity
      * @return A {@link CompletableFuture} completing asynchronously with the result of the database call
      */
     @Override
-    default CompletableFuture<ManipulationResult> save(@NotNull User entity) {
-        ManipulationResult result = Query.query("INSERT INTO users (uuid, name) VALUES (?, ?) ON DUPLICATE KEY UPDATE name=?;")
-                .single(Call.of().bind(entity.unique(), UUIDAdapter.AS_STRING).bind(entity.name()).bind(entity.name()))
+    default CompletableFuture<ManipulationResult> save(@NotNull User user) {
+        ManipulationResult manipulationResult = Query
+                .query("INSERT INTO core.users (uuid, name) VALUES (?, ?) ON DUPLICATE KEY UPDATE name=?;")
+                .single(Call.of().bind(user.unique(), UUIDAdapter.AS_STRING).bind(user.name()).bind(user.name()))
                 .update();
 
         CompletableFuture<ManipulationResult> future = new CompletableFuture<>();
-        future.completeAsync(() -> result);
+        future.completeAsync(() -> manipulationResult);
+
         return future;
     }
 
     /**
      * Deletes an existing entity from the data-model.
      *
-     * @param entity The entity
+     * @param user The entity
      * @return A {@link CompletableFuture} completing asynchronously with the result of the database call
      */
     @Override
-    default CompletableFuture<ManipulationResult> delete(@NotNull User entity) {
-        ManipulationResult result = Query.query("DELETE FROM users WHERE uuid=?;")
-                .single(Call.of().bind(entity.unique(), UUIDAdapter.AS_STRING))
+    default CompletableFuture<ManipulationResult> delete(@NotNull User user) {
+        ManipulationResult manipulationResult = Query
+                .query("DELETE FROM core.users WHERE uuid=?;")
+                .single(Call.of().bind(user.unique(), UUIDAdapter.AS_STRING))
                 .delete();
 
         CompletableFuture<ManipulationResult> future = new CompletableFuture<>();
-        future.completeAsync(() -> result);
+        future.completeAsync(() -> manipulationResult);
+
         return future;
     }
-
 }

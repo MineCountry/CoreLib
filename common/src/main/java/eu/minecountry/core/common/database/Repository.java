@@ -34,16 +34,18 @@ public interface Repository<T> {
     /**
      * Saves an entity into the data-model.
      *
-     * @param entity The entity
+     * @param u   The entity
+     * @param <U> The allowed subclasses of T
      * @return A {@link CompletableFuture} completing asynchronously with the result of the database call
      */
-    CompletableFuture<ManipulationResult> save(@NotNull T entity);
+    <U extends T> CompletableFuture<ManipulationResult> save(@NotNull U u);
 
     /**
      * Deletes an existing entity from the data-model.
      *
-     * @param entity The entity
+     * @param u   The entity
+     * @param <U> The allowed subclasses of T
      * @return A {@link CompletableFuture} completing asynchronously with the result of the database call
      */
-    CompletableFuture<ManipulationResult> delete(@NotNull T entity);
+    <U extends T> CompletableFuture<ManipulationResult> delete(@NotNull U u);
 }
