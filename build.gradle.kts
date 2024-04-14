@@ -56,6 +56,9 @@ allprojects {
         implementation("de.chojo.sadu:sadu-queries:2.1.0")
         implementation("de.chojo.sadu:sadu-datasource:2.1.0")
 
+        compileOnly("eu.cloudnetservice.cloudnet:driver:4.0.0-RC10")
+        compileOnly("eu.cloudnetservice.cloudnet:bridge:4.0.0-RC10")
+
         testImplementation("org.mockito:mockito-core:5.11.0")
         testImplementation(platform("org.junit:junit-bom:5.10.2"))
         testImplementation("org.junit.jupiter:junit-jupiter")
