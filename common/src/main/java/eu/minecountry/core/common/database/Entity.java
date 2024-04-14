@@ -1,5 +1,7 @@
 package eu.minecountry.core.common.database;
 
+import org.jetbrains.annotations.NotNull;
+
 /**
  * Represents an abstract implementation of a dataset in a database.
  *
@@ -13,6 +15,7 @@ public interface Entity<T> {
      *
      * @return The identifier
      */
+    @NotNull
     T unique();
 
 }
